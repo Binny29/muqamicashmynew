@@ -1,5 +1,5 @@
 <!-- Favicon -->
- <?php $baseUrl= 'http://localhost/muqamicash/';
+ <?php $baseUrl= 'http://localhost/muqamicashmynew/';
  session_start();
 if(empty($_SESSION['login_user'])){
 	include_once('connection.php');
