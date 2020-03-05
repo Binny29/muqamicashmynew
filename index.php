@@ -1,4 +1,4 @@
- <?php $baseUrl= 'http://localhost/muqamicash/';
+ <?php $baseUrl= 'http://localhost/muqamicashmynew/';
 include_once 'connection.php';
   ?>
 <!DOCTYPE html>
