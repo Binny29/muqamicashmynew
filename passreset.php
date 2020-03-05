@@ -7,24 +7,31 @@
 	<meta content="Spruko" name="author">
 
 	<!-- Title -->
-	<title>All Requests</title>
+	<title>All Users</title>
 
 	<?php include_once("header.php");
 
 	include_once('connection.php');
 
-	if(!empty($_GET['req_id'])){
-		$req_id=$_GET['req_id'];
-		$sql = "DELETE from tickets WHERE id=$req_id";
+	if(!empty($_GET['uid'])){
+		$uid=$_GET['uid'];
+		$sql = "DELETE from users WHERE id=$uid";
 if(mysqli_query($connect, $sql)){
-	header("Location:ticket_panel.php");
+	header("Location:users.php");
 }
 	}
 	?>
 
 	<div class="page">
 		<div class="page-main">
-		
+		<style type="text/css">
+			.btn-group-xs>.btn, .btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+		</style>
 			<!-- Sidebar menu-->
 			<?php include_once("sidebar.php");?>
 			<!-- Sidebar menu-->
@@ -37,7 +44,7 @@ if(mysqli_query($connect, $sql)){
 							<div class="page-header mt-0 shadow p-3">
 								<ol class="breadcrumb mb-sm-0">
 									<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">All Requests</li>
+									<li class="breadcrumb-item active" aria-current="page">Password request</li>
 								</ol>
 							<!-- 	<div class="btn-group mb-0">
 									<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
@@ -51,7 +58,7 @@ if(mysqli_query($connect, $sql)){
 								<div class="col-md-12">
 									<div class="card shadow">
 										<div class="card-header">
-											<h2 class="mb-0">All Requests</h2>
+											<h2 class="mb-0">All Request</h2>
 										</div>
 										<div class="card-body">
 											<div class="table-responsive">
@@ -59,12 +66,12 @@ if(mysqli_query($connect, $sql)){
 													<thead>
 														<tr>
 															<th class="wd-15p">No.</th>
-															<th class="wd-15p">User Id</th>
-															<th class="wd-15p">Ticket Number</th>
-															<th class="wd-15p">Issue Selection</th>
-															<th class="wd-15p">Subject</th>
-															<th class="wd-15p">Message</th>
-															<th class="wd-15p">Ticket Status</th>
+															<th class="wd-15p">Account State</th>
+															<th class="wd-15p">User name</th>
+															<th class="wd-15p">Full Name</th>
+															<th class="wd-15p">Email</th>
+															<th class="wd-15p">Sign Up date</th>
+															<th class="wd-15p">IP Address</th>
 															<th class="wd-15p">Action</th>
 															
 														</tr>
@@ -72,7 +79,7 @@ if(mysqli_query($connect, $sql)){
 													<tbody>
 														<?php
 
-														 $sql = "SELECT t.*, i.issue FROM `tickets` AS t INNER JOIN `issues` AS i ON i.id = t.issue_selection;";
+														 $sql = "SELECT * from users;";
                                 $result = mysqli_query($connect, $sql);
                                  if (mysqli_num_rows($result) > 0) {
                                  $i=1;
@@ -80,13 +87,13 @@ if(mysqli_query($connect, $sql)){
                                 ?>
 														<tr>
 															<td><?php echo $i;?></td>
-															<td><?php echo $row['user_id']?></td>
-															<td><?php echo $row['ticket_number']?></td>
-															<td><?php echo $row['issue']?></td>
-															<td><?php echo $row['subject']?></td>
-															<td><?php echo $row['message']?></td>
-															<td><?php echo $row['ticket_status']?></td>
-															<td style="display: inline-grid;"><a href="edit_panel.php?tid=<?php echo $row['id']?>">Edit Ticket</a>  <a href="<?php echo $_SERVER['PHP_SELF']?>?req_id=<?Php echo $row['id']?>" onclick="return confirm('Are you sure you want to delete?')">Delete</a>  <a href="view_message.php?tid=<?php echo $row['id']?>">View Message</a></td>
+															<td><?php if ($row['state'] == 0) {echo "Enabled";} else {echo "Blocked";} ?></td>
+															<td><?php echo $row['login']?></td>
+															<td><?php echo $row['fullname']?></td>
+															<td><?php echo $row['email']?></td>
+															<td><?php echo date("Y-m-d H:i:s", $row['regtime']); ?></td>
+															<td><?php echo $row['ip_addr']?></td>
+															<td style="display: inline-grid;"><a href="profile.php?id=<?Php echo $row['id'] ?>"class="btn   btn-xs"> View </a> <a href="tracker.php?user=<?php echo $row['login']; ?>" class="btn btn-xs"><i class="side-menu__icon fe fe-bar-chart-2"></i> Track Activity </a> <a href="<?php echo $_SERVER['PHP_SELF']?>?uid=<?Php echo $row['id']?>"  onclick="return confirm('Are you sure you want to delete?')" class="btn btn-xs" ><i class="side-menu__icon fe fe-trash"></i> Remove Account</a></td>
 														</tr>
 														
 														<?php

@@ -1,53 +1,3 @@
-<?php
-
- include_once("connection.php");
-
-
-
-//Total Requests count
-
-$sql_req = "SELECT COUNT(*) as num FROM Requests";
-
-
-$total_req = mysqli_query($connect, $sql_req);
-	
-$total_req = mysqli_fetch_array($total_req);
-	
-$all_req = $total_req['num'];
-
-// echo $all_req;
-
-
-
-//Total CompletedRecords count
-
-$sql_com = "SELECT COUNT(*) as num FROM Completed";
-
-
-$total_com = mysqli_query($connect, $sql_com);
-	
-$total_com = mysqli_fetch_array($total_com);
-	
-$all_com = $total_com['num'];
-
-// echo $all_com;
-
-
-//Total Users count
-
-$sql_users = "SELECT COUNT(*) as num FROM users";
-
-
-$total_users = mysqli_query($connect, $sql_users);
-	
-$total_users = mysqli_fetch_array($total_users);
-	
-$all_users = $total_users['num'];
-
-// echo $all_users;
-
-
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -87,86 +37,72 @@ $all_users = $total_users['num'];
 								</div>
 							</div>
 							<div class="row">
-
-								<div class="col-md-12">
-									<div class="row">
-									<div class="col-md-3">
-									    <div class="card pull-up shadow">
-										   <div class="card-content">
-											<div class="card-body">
-												<div class="media d-flex server">
-													<div class="media-body text-left">
-														<h2 class=""><?php  echo $all_req?$all_req:'0'; ?></h2>
-													</div>
-													<div class="align-self-center">
-														<i class="fas fa-gift icon text-primary float-right"></i>
-													</div>
-													
+								<div class="col-xl-8">
+									<div class="card  shadow">
+										<div class="card-header bg-transparent">
+											<div class="row align-items-center">
+												<div class="col">
+													<h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+													<h2 class="mb-0">Space Details</h2>
 												</div>
 
 											</div>
-                                           <!--  <span style="font-size: 12px;">Process (or) Delete a Request.</span> -->
-										   </div>
-
-									    </div>
-
-								    </div>
-
-								    <div class="col-md-3">
-									    <div class="card pull-up shadow">
-										   <div class="card-content">
+										</div>
+										<div class="card-body">
+											<!-- Chart -->
+											<canvas id="lineChart" class="chart-dropshadow h-285"></canvas>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-4">
+									<div class="card pull-up shadow">
+										<div class="card-content">
 											<div class="card-body">
 												<div class="media d-flex server">
 													<div class="media-body text-left">
-														<h2 class=""><?php echo $all_com?$all_com:'0'; ?></h2>			
+														<h2 class="">Server1 </h2>
+														<h4 class=" mb-0 text-muted"><span class="text-primary"><i class="fe fe-arrow-up-circle "></i></span> Last 52 days Ago <span class="badge badge-primary">Online</span></h4>
 													</div>
 													<div class="align-self-center">
-														<i class="fas fa-check icon text-primary float-right"></i>
+														<i class="fe fe-hard-drive icon text-primary float-right"></i>
 													</div>
 												</div>
 											</div>
-										   </div>
-									    </div>
-								    </div>
-								    <div class="col-md-3">
-									    <div class="card pull-up shadow">
-										   <div class="card-content">
+										</div>
+									</div>
+									<div class="card pull-up shadow">
+										<div class="card-content">
 											<div class="card-body">
 												<div class="media d-flex server">
 													<div class="media-body text-left">
-														<h2 class=""><?php echo $all_users?$all_users:'0'; ?></h2>
-														
+														<h2 class="">Server2</h2>
+														<h4 class=" mb-0 text-muted"><span class="text-primary"><i class="fe fe-arrow-up-circle "></i></span> Last 5 days Ago <span class="badge badge-primary">Online</span></h4>
 													</div>
 													<div class="align-self-center">
-														<i class="fas fa-user icon text-primary float-right"></i>
+														<i class="fe fe-hard-drive icon text-primary float-right"></i>
 													</div>
 												</div>
 											</div>
-										   </div>
-									    </div>
-								    </div>
-								    <div class="col-md-3">
-									    <div class="card pull-up shadow">
-										   <div class="card-content">
+										</div>
+									</div>
+									<div class="card pull-up shadow">
+										<div class="card-content">
 											<div class="card-body">
 												<div class="media d-flex server">
 													<div class="media-body text-left">
-														<h2 class=""><div class="count">Pushs</div></h2>
+														<h2 class="">Server3</h2>
+														<h4 class=" mb-0 text-muted"><span class="text-danger"><i class="fe fe-arrow-down-circle "></i></span> Last 10 days Ago <span class="badge badge-danger">Offline</span></h4>
 													</div>
 													<div class="align-self-center">
-														<i class="fas fa-user icon text-primary float-right"></i>
+														<i class="fe fe-hard-drive icon text-danger float-right"></i>
 													</div>
 												</div>
-												<!--  <span style="font-size: 15px; padding: 9px;">See Sent Pushs in Next Update</span> -->
 											</div>
-										   </div>
-									    </div>
-								    </div>
-								    </div>
-									
+										</div>
+									</div>
 								</div>
 							</div>
-							<!-- <div class="row">
+							<div class="row">
 								<div class="col-xl-4">
 									<div class="row">
 										<div class="col-12">
@@ -281,8 +217,8 @@ $all_users = $total_users['num'];
 										</div>
 									</div>
 								</div>
-							</div>-->
-							<!--<div class="row">
+							</div>
+							<div class="row">
 								<div class="col-xl-8">
 									<div class="card shadow">
 										<div class="card-header bg-transparent">
@@ -294,7 +230,7 @@ $all_users = $total_users['num'];
 											</div>
 										</div>
 										<div class="card-body">
-											
+											<!-- Chart -->
 											<div class="chart">
 												<div id="echart5" class="chart-dropshadow h-400"></div>
 											</div>
@@ -385,8 +321,8 @@ $all_users = $total_users['num'];
 									</div>
 
 								</div>
-							</div>-->
-						<!--	<div class="row">
+							</div>
+							<div class="row">
 								<div class="col-md-6 col-lg-6 col-xl-3">
 									<div class="card shadow overflow-hidden">
 										<div class="card-body text-white bg-gradient-primary text-center">
@@ -436,7 +372,7 @@ $all_users = $total_users['num'];
 										</div>
 									</div>
 								</div>
-							</div> -->
+							</div>
 						
 
 			<!-- Footer -->

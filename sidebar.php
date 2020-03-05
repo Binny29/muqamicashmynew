@@ -38,6 +38,7 @@
 							<a class="side-menu__item" href="payouts.php"><i class="side-menu__icon fe fe-file-text"></i><span class="side-menu__label">Redeem Options</span></a>
 							
 						</li>
+
 						<li class="slide">
 							<a class="side-menu__item" href="passreset.php"><i class="side-menu__icon fe fe-bar-chart-2"></i><span class="side-menu__label">Password Reset</span></a>
 							
@@ -48,8 +49,16 @@
 						</li>
 						<li class="slide">
 							<a class="side-menu__item" href="tracker.php"><i class="side-menu__icon fe fe-bar-chart-2"></i><span class="side-menu__label">Track Users Activity</span></a>
+
+					<li class="slide">
+							<a class="side-menu__item"  href="passreset.php"><i class="side-menu__icon fe fe-bar-chart-2"></i><span class="side-menu__label">Password Reset</span></a>
 							
 						</li>
+						<li class="slide">
+							<a class="side-menu__item"  href="users.php"><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Users</span></a>
+							
+						</li>
+						
 						<li class="slide">
 							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-underline"></i><span class="side-menu__label">Ticket system</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
@@ -78,6 +87,7 @@
 								</li>								
 							</ul>
 						</li>
+						
 						
 					</ul>
 				</div>
