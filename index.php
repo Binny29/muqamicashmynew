@@ -10,7 +10,7 @@ include_once 'connection.php';
 	<meta name="author" content="Creative Tim">
 
 	<!-- Title -->
-	<title>Ansta - Responsive Multipurpose Admin Dashboard Template</title>
+	<title>InstantlyCash|Video Rewards - Android App</title>
 
 	<!-- Favicon -->
 	<link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
@@ -39,7 +39,7 @@ session_start();
         $user_password = isset($_POST['pass']) ? $_POST['pass'] : '';
         //$token = isset($_POST['authenticity_token']) ? $_POST['authenticity_token'] : '';
        $psw=md5($user_password);
-      $sql = "SELECT * FROM admins WHERE username = '$user_username' and password = '$psw'"; 
+         $sql = "SELECT * FROM admins WHERE username = '$user_username' and password = '$psw'";
       $result = mysqli_query($connect,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['id'];
